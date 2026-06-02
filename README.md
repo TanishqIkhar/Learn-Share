@@ -2,7 +2,17 @@
 
 > A community-driven marketplace for students to **buy, sell, donate, and exchange** educational materials — textbooks, notes, lab equipment, and more.
 
-![Hero](https://img.shields.io/badge/Status-MVP-brightgreen) ![License](https://img.shields.io/badge/License-MIT-blue) ![Node](https://img.shields.io/badge/Node-18+-green) ![Next.js](https://img.shields.io/badge/Next.js-16-black)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-learn--share--drab.vercel.app-c41e3a?style=for-the-badge)](https://learn-share-drab.vercel.app)
+
+![Hero](https://img.shields.io/badge/Status-Live-brightgreen) ![License](https://img.shields.io/badge/License-MIT-blue) ![Node](https://img.shields.io/badge/Node-18+-green) ![Next.js](https://img.shields.io/badge/Next.js-16-black) ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black) ![Render](https://img.shields.io/badge/API-Render-blue)
+
+## 🔗 Live Links
+
+| | Link |
+|--|------|
+| 🌐 **Full App (Next.js)** | https://learn-share-drab.vercel.app |
+| ⚙️ **API Health Check** | https://learnshare-api.onrender.com/api/health |
+| 📄 **Static Site (GitHub Pages)** | https://tanishqikhar.github.io/Learn-Share/ |
 
 ---
 
