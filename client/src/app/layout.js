@@ -2,6 +2,7 @@ import './globals.css';
 import { AuthProvider } from '@/context/AuthContext';
 import { SocketProvider } from '@/context/SocketContext';
 import Navbar from '@/components/Navbar';
+import KeepAlive from '@/components/KeepAlive';
 
 export const metadata = {
   title: 'LearnShare — Student Marketplace for Educational Materials',
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="antialiased">
+        <KeepAlive />
         <AuthProvider>
           <SocketProvider>
             <Navbar />
