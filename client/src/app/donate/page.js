@@ -17,12 +17,12 @@ export default function DonatePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf5f0]">
+    <div className="-mt-16 bg-[#faf5f0] min-h-screen">
       {/* Header */}
       <div className="bg-[#1a1210] relative overflow-hidden">
         <div className="absolute inset-0 noise-bg" />
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#c41e3a]/20 to-transparent" />
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 text-center">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-36 pb-20 text-center">
           <p className="text-[#d4a853] text-sm font-body font-semibold tracking-[0.2em] uppercase mb-4">Community Giving</p>
           <h1 className="text-4xl md:text-6xl font-bold text-white font-display mb-4">
             Free Educational <em className="italic text-[#d4a853]">Materials</em>

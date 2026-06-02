@@ -42,9 +42,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf5f0]">
+    <div className="-mt-16 bg-[#faf5f0]">
       {/* Hero Section */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <section className="relative min-h-screen pt-16 flex items-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-[#c41e3a]" />
         <div className="absolute inset-0 noise-bg" />
@@ -85,7 +85,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full flex flex-col items-center text-center">
           <div className="max-w-3xl">
             <div className="animate-fadeInUp">
               <p className="text-white/70 text-sm font-body font-medium tracking-[0.2em] uppercase mb-8">
@@ -110,20 +110,12 @@ export default function Home() {
               Building a sustainable learning community, one book at a time.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-10 animate-fadeInUp" style={{animationDelay: '0.5s'}}>
-              <Link
-                href="/listings"
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-[#c41e3a] font-bold rounded-full hover:bg-[#faf5f0] hover:shadow-2xl hover:shadow-black/20 transition-all hover:-translate-y-0.5 text-sm font-body"
-              >
+            <div className="flex flex-col sm:flex-row gap-4 mt-12 animate-fadeInUp justify-center" style={{animationDelay: '0.4s'}}>
+              <Link href="/listings" className="px-8 py-4 bg-white text-[#c41e3a] rounded-full font-bold font-body hover:bg-[#faf5f0] hover:scale-105 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-white/10">
                 See Our Work
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Link>
-              <Link
-                href="/register"
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 hover:border-white/60 transition-all text-sm font-body"
-              >
+              <Link href="/register" className="px-8 py-4 bg-transparent border border-white/30 text-white rounded-full font-bold font-body hover:bg-white/10 hover:border-white transition-all text-center">
                 Let&apos;s Talk
               </Link>
             </div>

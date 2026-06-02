@@ -3,12 +3,18 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
 import { useSocket } from '@/context/SocketContext';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const { unreadCount } = useSocket();
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  // Pages with dark headers
+  const isDarkPage = pathname === '/' || pathname === '/donate';
+  const forceLightText = isDarkPage && !scrolled;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -32,10 +38,10 @@ export default function Navbar() {
               </svg>
             </div>
             <div>
-              <span className="text-xl font-bold text-[#1a1210] font-display tracking-tight">
-                Learn<span className="text-[#c41e3a]">Share</span>
+              <span className={`text-xl font-bold font-display tracking-tight transition-colors ${forceLightText ? 'text-white' : 'text-[#1a1210]'}`}>
+                Learn<span className={forceLightText ? 'text-white' : 'text-[#c41e3a]'}>Share</span>
               </span>
-              <span className="hidden sm:block text-[10px] text-[#8c7e72] font-body tracking-[0.2em] uppercase -mt-0.5">
+              <span className={`hidden sm:block text-[10px] font-body tracking-[0.2em] uppercase -mt-0.5 transition-colors ${forceLightText ? 'text-white/60' : 'text-[#8c7e72]'}`}>
                 Books & Beyond
               </span>
             </div>
@@ -43,18 +49,18 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
-            <Link href="/listings" className="px-4 py-2 text-sm font-medium text-[#2d2118] hover:text-[#c41e3a] rounded-lg hover:bg-[#c41e3a]/5 transition-all font-body">
+            <Link href="/listings" className={`px-4 py-2 text-sm font-medium rounded-lg transition-all font-body ${forceLightText ? 'text-white hover:bg-white/10' : 'text-[#2d2118] hover:text-[#c41e3a] hover:bg-[#c41e3a]/5'}`}>
               Marketplace
             </Link>
-            <Link href="/donate" className="px-4 py-2 text-sm font-medium text-[#2d2118] hover:text-[#c41e3a] rounded-lg hover:bg-[#c41e3a]/5 transition-all font-body">
+            <Link href="/donate" className={`px-4 py-2 text-sm font-medium rounded-lg transition-all font-body ${forceLightText ? 'text-white hover:bg-white/10' : 'text-[#2d2118] hover:text-[#c41e3a] hover:bg-[#c41e3a]/5'}`}>
               Free Items
             </Link>
             {user ? (
               <>
-                <Link href="/listings/create" className="px-4 py-2 text-sm font-medium text-[#2d2118] hover:text-[#c41e3a] rounded-lg hover:bg-[#c41e3a]/5 transition-all font-body">
+                <Link href="/listings/create" className={`px-4 py-2 text-sm font-medium rounded-lg transition-all font-body ${forceLightText ? 'text-white hover:bg-white/10' : 'text-[#2d2118] hover:text-[#c41e3a] hover:bg-[#c41e3a]/5'}`}>
                   Sell / Donate
                 </Link>
-                <Link href="/messages" className="relative px-4 py-2 text-sm font-medium text-[#2d2118] hover:text-[#c41e3a] rounded-lg hover:bg-[#c41e3a]/5 transition-all font-body">
+                <Link href="/messages" className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all font-body ${forceLightText ? 'text-white hover:bg-white/10' : 'text-[#2d2118] hover:text-[#c41e3a] hover:bg-[#c41e3a]/5'}`}>
                   Messages
                   {unreadCount > 0 && (
                     <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-[#c41e3a] text-white text-[10px] rounded-full flex items-center justify-center font-bold animate-pulse">
@@ -62,24 +68,28 @@ export default function Navbar() {
                     </span>
                   )}
                 </Link>
-                <Link href="/profile" className="px-4 py-2 text-sm font-medium text-[#2d2118] hover:text-[#c41e3a] rounded-lg hover:bg-[#c41e3a]/5 transition-all font-body">
+                <Link href="/profile" className={`px-4 py-2 text-sm font-medium rounded-lg transition-all font-body ${forceLightText ? 'text-white hover:bg-white/10' : 'text-[#2d2118] hover:text-[#c41e3a] hover:bg-[#c41e3a]/5'}`}>
                   Profile
                 </Link>
                 <button
                   onClick={logout}
-                  className="ml-2 px-4 py-2 text-sm text-[#8c7e72] hover:text-[#c41e3a] rounded-lg transition-all font-body"
+                  className={`ml-2 px-4 py-2 text-sm rounded-lg transition-all font-body ${forceLightText ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-[#8c7e72] hover:text-[#c41e3a]'}`}
                 >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link href="/login" className="px-4 py-2 text-sm font-medium text-[#2d2118] hover:text-[#c41e3a] rounded-lg hover:bg-[#c41e3a]/5 transition-all font-body">
+                <Link href="/login" className={`px-4 py-2 text-sm font-medium rounded-lg transition-all font-body ${forceLightText ? 'text-white hover:bg-white/10' : 'text-[#2d2118] hover:text-[#c41e3a] hover:bg-[#c41e3a]/5'}`}>
                   Login
                 </Link>
                 <Link
                   href="/register"
-                  className="ml-3 px-6 py-2.5 text-sm font-semibold text-white bg-[#c41e3a] rounded-full hover:bg-[#8b1425] hover:shadow-xl hover:shadow-[#c41e3a]/20 hover:-translate-y-0.5 transition-all font-body"
+                  className={`ml-3 px-6 py-2.5 text-sm font-semibold rounded-full hover:shadow-xl hover:-translate-y-0.5 transition-all font-body ${
+                    forceLightText 
+                      ? 'bg-white text-[#c41e3a] hover:bg-[#faf5f0] hover:shadow-white/20' 
+                      : 'text-white bg-[#c41e3a] hover:bg-[#8b1425] hover:shadow-[#c41e3a]/20'
+                  }`}
                 >
                   Let&apos;s Talk
                 </Link>
@@ -90,7 +100,7 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden p-2 text-[#2d2118] hover:text-[#c41e3a] rounded-lg transition-colors"
+            className={`lg:hidden p-2 rounded-lg transition-colors ${forceLightText ? 'text-white hover:bg-white/10' : 'text-[#2d2118] hover:text-[#c41e3a]'}`}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {menuOpen ? (
