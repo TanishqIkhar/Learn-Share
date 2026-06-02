@@ -1,11 +1,11 @@
 'use client';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import ListingCard from '@/components/ListingCard';
 import FilterSidebar from '@/components/FilterSidebar';
 import { listingsAPI } from '@/lib/api';
 import { useSearchParams } from 'next/navigation';
 
-export default function ListingsPage() {
+function ListingsContent() {
   const searchParams = useSearchParams();
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -46,7 +46,7 @@ export default function ListingsPage() {
       <div className="bg-[#c41e3a] relative overflow-hidden">
         <div className="absolute inset-0 noise-bg" />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          <p className="text-white/60 text-sm font-body font-medium tracking-[0.2em] uppercase mb-3">Browse & Discover</p>
+          <p className="text-white/60 text-sm font-body font-medium tracking-[0.2em] uppercase mb-3">Browse &amp; Discover</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white font-display">Marketplace</h1>
           <p className="text-white/50 font-body mt-2">Find educational materials shared by students near you</p>
         </div>
@@ -100,5 +100,17 @@ export default function ListingsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ListingsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#faf5f0] flex items-center justify-center">
+        <div className="text-[#c41e3a] text-xl font-body">Loading marketplace...</div>
+      </div>
+    }>
+      <ListingsContent />
+    </Suspense>
   );
 }
